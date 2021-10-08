@@ -1,6 +1,6 @@
 import 'package:auto_route/annotations.dart';
 
-import 'pages/pages.dart';
+import '../pages/pages.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
@@ -9,7 +9,6 @@ import 'pages/pages.dart';
       AutoRoute(
         name: 'ShopTabRouter',
         page: ShopTab,
-        initial: true,
       ),
     ]),
     AutoRoute(page: ShopItemPage),

@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shop_mobx/models/models.dart';
 import 'package:shop_mobx/repositories/repositories.dart';
 
-import '../../locator.dart';
+import '../../services/locator.dart';
 
 part 'shop_page_store.g.dart';
 
@@ -13,19 +14,25 @@ class ShopPageStore = _ShopPageStore with _$ShopPageStore;
 abstract class _ShopPageStore with Store {
   final ProductsRepository _productsRepository = getIt<ProductsRepository>();
 
-  /// Items of the shop
+  /// All the items of the shop
+  List<ShopItem> allItems = [];
+
+  /// Items to be currently displayed
   @observable
-  ObservableList<ShopItem> shopItems = ObservableList<ShopItem>();
+  ObservableList<ShopItem> displayedItems = ObservableList<ShopItem>();
 
   /// Categories of the shop items
   @observable
   ObservableList<String> categories = ObservableList<String>();
 
+  @observable
+  ScrollController controller = ScrollController();
+
   /// Gets all the shop items from the backend
   @action
   Future<void> getAllProducts() async {
-    var items = await _productsRepository.getAllProducts();
-    shopItems = ObservableList.of(items);
+    allItems = await _productsRepository.getAllProducts();
+    displayedItems = ObservableList.of(allItems);
   }
 
   /// Gets all the categories from the backend
@@ -37,27 +44,51 @@ abstract class _ShopPageStore with Store {
 
   /// Sort shop items by specific [category]
   @action
-  ObservableList<ShopItem> getProductsByCategory({
+  void getItemsByCategory({
     /// [category] name
     required String category,
-  }) =>
-      ObservableList.of(
-        shopItems.where((item) => item.category == category),
+  }) {
+    if (category == allProducts) {
+      displayedItems = ObservableList.of(allItems);
+    } else {
+      displayedItems = ObservableList.of(
+        allItems.where((item) => item.category == category),
       );
+    }
+  }
 
   /// Filters shop items by price in asc or desc order
   @action
-  ObservableList<ShopItem> filterByPrice({
+  void filterByPrice({
     /// filter could be asc or desc
     required OrderEnum filter,
-    /// items that needs to be sorted
-    required List<ShopItem> items,
   }) {
-    items.sort((a, b) => a.price.compareTo(b.price));
+    displayedItems.sort((a, b) => a.price.compareTo(b.price));
     if (filter == OrderEnum.desc) {
-      items.reversed;
+      displayedItems.reversed;
     }
-    return ObservableList.of(items);
+  }
+
+  /// scrolls controller to required number
+  @action
+  void jumpTo({double jump = 0}) {
+    controller.jumpTo(jump);
+  }
+
+  /// smoothly scrolls controller to required number
+  @action
+  void animateTo({double jump = 0}) {
+    controller.animateTo(
+      jump,
+      duration: Duration(seconds: 1),
+      curve: Curves.ease,
+    );
+  }
+
+  /// dispose scroll controller
+  @action
+  void disposeController() {
+    controller.dispose();
   }
 
   /// Gets all the shop items and categories from the backend

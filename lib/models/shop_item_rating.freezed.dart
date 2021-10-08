@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'shop_item_rating.dart';
 
@@ -127,7 +126,7 @@ class _$_ShopItemRating implements _ShopItemRating {
   const _$_ShopItemRating({required this.rate, required this.count});
 
   factory _$_ShopItemRating.fromJson(Map<String, dynamic> json) =>
-      _$$_ShopItemRatingFromJson(json);
+      _$_$_ShopItemRatingFromJson(json);
 
   @override
   final double rate;
@@ -162,7 +161,7 @@ class _$_ShopItemRating implements _ShopItemRating {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ShopItemRatingToJson(this);
+    return _$_$_ShopItemRatingToJson(this);
   }
 }
 

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shop_mobx/services/services.dart';
 
-import 'locator.dart';
-import 'pages/pages.dart';
-import 'router.gr.dart';
+import 'services/locator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,6 +12,7 @@ void main() async {
 class ShopApp extends StatelessWidget {
   final _appRouter = getIt<AppRouter>();
   ShopApp({Key? key}) : super(key: key);
+  final theme = ThemeStore();
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +22,7 @@ class ShopApp extends StatelessWidget {
         navigatorObservers: () => <NavigatorObserver>[],
       ),
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-        iconTheme: const IconThemeData(
-          color: Colors.red,
-        )
-      ),
+      theme: theme.themeData,
     );
   }
 }

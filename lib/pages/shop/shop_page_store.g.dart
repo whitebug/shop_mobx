@@ -9,18 +9,18 @@ part of 'shop_page_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ShopPageStore on _ShopPageStore, Store {
-  final _$shopItemsAtom = Atom(name: '_ShopPageStore.shopItems');
+  final _$displayedItemsAtom = Atom(name: '_ShopPageStore.displayedItems');
 
   @override
-  ObservableList<ShopItem> get shopItems {
-    _$shopItemsAtom.reportRead();
-    return super.shopItems;
+  ObservableList<ShopItem> get displayedItems {
+    _$displayedItemsAtom.reportRead();
+    return super.displayedItems;
   }
 
   @override
-  set shopItems(ObservableList<ShopItem> value) {
-    _$shopItemsAtom.reportWrite(value, super.shopItems, () {
-      super.shopItems = value;
+  set displayedItems(ObservableList<ShopItem> value) {
+    _$displayedItemsAtom.reportWrite(value, super.displayedItems, () {
+      super.displayedItems = value;
     });
   }
 
@@ -36,6 +36,21 @@ mixin _$ShopPageStore on _ShopPageStore, Store {
   set categories(ObservableList<String> value) {
     _$categoriesAtom.reportWrite(value, super.categories, () {
       super.categories = value;
+    });
+  }
+
+  final _$controllerAtom = Atom(name: '_ShopPageStore.controller');
+
+  @override
+  ScrollController get controller {
+    _$controllerAtom.reportRead();
+    return super.controller;
+  }
+
+  @override
+  set controller(ScrollController value) {
+    _$controllerAtom.reportWrite(value, super.controller, () {
+      super.controller = value;
     });
   }
 
@@ -59,23 +74,55 @@ mixin _$ShopPageStore on _ShopPageStore, Store {
       ActionController(name: '_ShopPageStore');
 
   @override
-  ObservableList<ShopItem> getProductsByCategory({required String category}) {
+  void getItemsByCategory({required String category}) {
     final _$actionInfo = _$_ShopPageStoreActionController.startAction(
-        name: '_ShopPageStore.getProductsByCategory');
+        name: '_ShopPageStore.getItemsByCategory');
     try {
-      return super.getProductsByCategory(category: category);
+      return super.getItemsByCategory(category: category);
     } finally {
       _$_ShopPageStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  ObservableList<ShopItem> filterByPrice(
-      {required OrderEnum filter, required List<ShopItem> items}) {
+  void filterByPrice({required OrderEnum filter}) {
     final _$actionInfo = _$_ShopPageStoreActionController.startAction(
         name: '_ShopPageStore.filterByPrice');
     try {
-      return super.filterByPrice(filter: filter, items: items);
+      return super.filterByPrice(filter: filter);
+    } finally {
+      _$_ShopPageStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void jumpTo({double jump = 0}) {
+    final _$actionInfo = _$_ShopPageStoreActionController.startAction(
+        name: '_ShopPageStore.jumpTo');
+    try {
+      return super.jumpTo(jump: jump);
+    } finally {
+      _$_ShopPageStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void animateTo({double jump = 0}) {
+    final _$actionInfo = _$_ShopPageStoreActionController.startAction(
+        name: '_ShopPageStore.animateTo');
+    try {
+      return super.animateTo(jump: jump);
+    } finally {
+      _$_ShopPageStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void disposeController() {
+    final _$actionInfo = _$_ShopPageStoreActionController.startAction(
+        name: '_ShopPageStore.disposeController');
+    try {
+      return super.disposeController();
     } finally {
       _$_ShopPageStoreActionController.endAction(_$actionInfo);
     }
@@ -84,8 +131,9 @@ mixin _$ShopPageStore on _ShopPageStore, Store {
   @override
   String toString() {
     return '''
-shopItems: ${shopItems},
-categories: ${categories}
+displayedItems: ${displayedItems},
+categories: ${categories},
+controller: ${controller}
     ''';
   }
 }

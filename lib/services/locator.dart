@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:shop_mobx/router.gr.dart';
+import 'package:shop_mobx/services/router.gr.dart';
 
-import 'repositories/repositories.dart';
+import '../repositories/repositories.dart';
 
 final GetIt getIt = GetIt.I;
 

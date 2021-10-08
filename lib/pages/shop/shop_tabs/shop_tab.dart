@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:shop_mobx/models/models.dart';
+import 'package:shop_mobx/widgets/mobx_scroll_view.dart';
 import 'package:shop_mobx/widgets/widgets.dart';
 
 import '../../pages.dart';
@@ -28,9 +29,10 @@ class _ShopTabState extends State<ShopTab> {
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Observer(
         builder: (_) {
-          List<ShopItem>? items = widget.store.shopItems;
-          return CustomScrollView(
-            slivers: [
+          List<ShopItem>? items = widget.store.displayedItems;
+          return MobxScrollView(
+            store: widget.store,
+            children: [
               SliverList(
                 delegate: SliverChildListDelegate([
                   const SizedBox(height: 100.0),
@@ -58,18 +60,13 @@ class _ShopTabState extends State<ShopTab> {
                         _currentItem.title,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontSize: 16.0,
-                        ),
+                        style: Theme.of(context).textTheme.bodyText1,
                       ),
                       itemPrice: Text(
                         '${_currentItem.price}\$',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.red,
-                        ),
+                        style: Theme.of(context).textTheme.subtitle1,
                       ),
-                      cardColor: Colors.white,
+                      cardColor: Theme.of(context).cardColor,
                     );
                   },
                   childCount: items.length,

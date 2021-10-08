@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:shop_mobx/router.gr.dart';
+import 'package:shop_mobx/services/router.gr.dart';
 import 'package:shop_mobx/widgets/widgets.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'shop.dart';
@@ -37,17 +37,21 @@ class _ShopPageState extends State<ShopPage> {
           return Scaffold(
             appBar: AppBar(
               centerTitle: true,
-              title: const Text('someTitle'),
+              title: Text(
+                'someTitle',
+                style: Theme.of(context).textTheme.headline1,
+              ),
               foregroundColor: Colors.black,
               backgroundColor: Colors.white,
               elevation: 0,
             ),
             body: Container(
-              color: Colors.grey[200],
+              color: Theme.of(context).scaffoldBackgroundColor,
               child: Stack(
                 children: [
                   /// Shop tabs and tab bar
                   child,
+
                   /// Filters that on the top of the screen
                   FilterBar(store: store),
                   SlidingUpPanel(

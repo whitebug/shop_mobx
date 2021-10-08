@@ -34,9 +34,10 @@ class CategoriesList extends StatelessWidget {
                       shape: const StadiumBorder(),
                     ),
                     onPressed: () {
-                      store.selectCategory(
+                      store.getItemsByCategory(
                         category: currentCategory,
                       );
+                      store.animateTo(jump: 0);
                     },
                   ),
                 );
