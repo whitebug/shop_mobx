@@ -2,36 +2,28 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:shop_mobx/models/models.dart';
+import 'package:shop_mobx/services/services.dart';
 import 'package:shop_mobx/widgets/mobx_scroll_view.dart';
 import 'package:shop_mobx/widgets/widgets.dart';
 
 import '../../pages.dart';
 
-class ShopTab extends StatefulWidget {
-  final ShopPageStore store;
-  const ShopTab({
-    required this.store,
-    Key? key,
-  }) : super(key: key);
+class ShopTab extends StatelessWidget {
+  const ShopTab({Key? key}) : super(key: key);
 
-  @override
-  _ShopTabState createState() => _ShopTabState();
-}
-
-class _ShopTabState extends State<ShopTab> {
   final double _cardWidth = 164;
   final double _cardHeight = 260;
   final double _imageHeight = 184;
 
   @override
   Widget build(BuildContext context) {
+    final ShopPageStore store = getIt<ShopPageStore>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Observer(
         builder: (_) {
-          List<ShopItem>? items = widget.store.displayedItems;
+          List<ShopItem>? items = store.displayedItems;
           return MobxScrollView(
-            store: widget.store,
             children: [
               SliverList(
                 delegate: SliverChildListDelegate([

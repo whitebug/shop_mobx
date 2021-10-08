@@ -39,18 +39,33 @@ mixin _$ShopPageStore on _ShopPageStore, Store {
     });
   }
 
-  final _$controllerAtom = Atom(name: '_ShopPageStore.controller');
+  final _$scrollControllerAtom = Atom(name: '_ShopPageStore.scrollController');
 
   @override
-  ScrollController get controller {
-    _$controllerAtom.reportRead();
-    return super.controller;
+  ScrollController get scrollController {
+    _$scrollControllerAtom.reportRead();
+    return super.scrollController;
   }
 
   @override
-  set controller(ScrollController value) {
-    _$controllerAtom.reportWrite(value, super.controller, () {
-      super.controller = value;
+  set scrollController(ScrollController value) {
+    _$scrollControllerAtom.reportWrite(value, super.scrollController, () {
+      super.scrollController = value;
+    });
+  }
+
+  final _$panelControllerAtom = Atom(name: '_ShopPageStore.panelController');
+
+  @override
+  PanelController get panelController {
+    _$panelControllerAtom.reportRead();
+    return super.panelController;
+  }
+
+  @override
+  set panelController(PanelController value) {
+    _$panelControllerAtom.reportWrite(value, super.panelController, () {
+      super.panelController = value;
     });
   }
 
@@ -118,11 +133,33 @@ mixin _$ShopPageStore on _ShopPageStore, Store {
   }
 
   @override
-  void disposeController() {
+  void openPanel() {
     final _$actionInfo = _$_ShopPageStoreActionController.startAction(
-        name: '_ShopPageStore.disposeController');
+        name: '_ShopPageStore.openPanel');
     try {
-      return super.disposeController();
+      return super.openPanel();
+    } finally {
+      _$_ShopPageStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void disposeScrollController() {
+    final _$actionInfo = _$_ShopPageStoreActionController.startAction(
+        name: '_ShopPageStore.disposeScrollController');
+    try {
+      return super.disposeScrollController();
+    } finally {
+      _$_ShopPageStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void disposePanelController() {
+    final _$actionInfo = _$_ShopPageStoreActionController.startAction(
+        name: '_ShopPageStore.disposePanelController');
+    try {
+      return super.disposePanelController();
     } finally {
       _$_ShopPageStoreActionController.endAction(_$actionInfo);
     }
@@ -133,7 +170,8 @@ mixin _$ShopPageStore on _ShopPageStore, Store {
     return '''
 displayedItems: ${displayedItems},
 categories: ${categories},
-controller: ${controller}
+scrollController: ${scrollController},
+panelController: ${panelController}
     ''';
   }
 }

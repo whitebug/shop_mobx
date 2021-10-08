@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shop_mobx/models/models.dart';
 import 'package:shop_mobx/repositories/repositories.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 import '../../services/locator.dart';
 
@@ -25,8 +26,13 @@ abstract class _ShopPageStore with Store {
   @observable
   ObservableList<String> categories = ObservableList<String>();
 
+  /// Controller for the main grid list
   @observable
-  ScrollController controller = ScrollController();
+  ScrollController scrollController = ScrollController();
+
+  /// Controller for the sliding up panel
+  @observable
+  PanelController panelController = PanelController();
 
   /// Gets all the shop items from the backend
   @action
@@ -55,6 +61,8 @@ abstract class _ShopPageStore with Store {
         allItems.where((item) => item.category == category),
       );
     }
+    // scrolls back to the beginning when a category is chosen
+    animateTo(jump: 0);
   }
 
   /// Filters shop items by price in asc or desc order
@@ -72,23 +80,35 @@ abstract class _ShopPageStore with Store {
   /// scrolls controller to required number
   @action
   void jumpTo({double jump = 0}) {
-    controller.jumpTo(jump);
+    scrollController.jumpTo(jump);
   }
 
   /// smoothly scrolls controller to required number
   @action
   void animateTo({double jump = 0}) {
-    controller.animateTo(
+    scrollController.animateTo(
       jump,
       duration: Duration(seconds: 1),
       curve: Curves.ease,
     );
   }
 
-  /// dispose scroll controller
+  /// show sliding panel
   @action
-  void disposeController() {
-    controller.dispose();
+  void openPanel() {
+    panelController.open();
+  }
+
+  /// dispose scroll controller of main page grid
+  @action
+  void disposeScrollController() {
+    scrollController.dispose();
+  }
+
+  /// dispose sliding panel controller
+  @action
+  void disposePanelController() {
+    panelController.close();
   }
 
   /// Gets all the shop items and categories from the backend

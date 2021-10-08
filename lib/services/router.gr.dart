@@ -24,10 +24,8 @@ class AppRouter extends _i1.RootStackRouter {
           routeData: routeData, child: const _i3.ShopItemPage());
     },
     ShopTabRouter.name: (routeData) {
-      final args = routeData.argsAs<ShopTabRouterArgs>();
       return _i1.MaterialPageX<dynamic>(
-          routeData: routeData,
-          child: _i3.ShopTab(store: args.store, key: args.key));
+          routeData: routeData, child: const _i3.ShopTab());
     }
   };
 
@@ -53,18 +51,8 @@ class ShopItemRoute extends _i1.PageRouteInfo {
   static const String name = 'ShopItemRoute';
 }
 
-class ShopTabRouter extends _i1.PageRouteInfo<ShopTabRouterArgs> {
-  ShopTabRouter({required _i3.ShopPageStore store, _i2.Key? key})
-      : super(name,
-            path: 'shop-tab', args: ShopTabRouterArgs(store: store, key: key));
+class ShopTabRouter extends _i1.PageRouteInfo {
+  const ShopTabRouter() : super(name, path: 'shop-tab');
 
   static const String name = 'ShopTabRouter';
-}
-
-class ShopTabRouterArgs {
-  const ShopTabRouterArgs({required this.store, this.key});
-
-  final _i3.ShopPageStore store;
-
-  final _i2.Key? key;
 }

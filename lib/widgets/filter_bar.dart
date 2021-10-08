@@ -34,11 +34,11 @@ class FilterBar extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CategoriesList(store: store),
+            CategoriesList(),
             TextButton(
               child: Text('open'),
               onPressed: () {
-
+                store.openPanel();
               },
             ),
           ],

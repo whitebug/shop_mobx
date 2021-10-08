@@ -12,8 +12,7 @@ void main() async {
 class ShopApp extends StatelessWidget {
   final _appRouter = getIt<AppRouter>();
   ShopApp({Key? key}) : super(key: key);
-  final theme = ThemeStore();
-
+  final theme = getIt<ThemeStore>();
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
@@ -21,7 +20,6 @@ class ShopApp extends StatelessWidget {
       routerDelegate: _appRouter.delegate(
         navigatorObservers: () => <NavigatorObserver>[],
       ),
-      title: 'Flutter Demo',
       theme: theme.themeData,
     );
   }

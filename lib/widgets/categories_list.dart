@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:shop_mobx/pages/pages.dart';
+import 'package:shop_mobx/services/services.dart';
 
 class CategoriesList extends StatelessWidget {
   const CategoriesList({
     Key? key,
-    required this.store,
   }) : super(key: key);
-
-  final ShopPageStore store;
 
   @override
   Widget build(BuildContext context) {
+    final ShopPageStore store = getIt<ShopPageStore>();
     return Observer(builder: (context) {
       List<String>? categories = store.categories;
       return Column(
@@ -37,7 +36,6 @@ class CategoriesList extends StatelessWidget {
                       store.getItemsByCategory(
                         category: currentCategory,
                       );
-                      store.animateTo(jump: 0);
                     },
                   ),
                 );

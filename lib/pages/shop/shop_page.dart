@@ -1,10 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:shop_mobx/services/router.gr.dart';
+import 'package:shop_mobx/services/services.dart';
 import 'package:shop_mobx/widgets/widgets.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'shop.dart';
 
 class ShopPage extends StatefulWidget {
@@ -15,22 +14,21 @@ class ShopPage extends StatefulWidget {
 }
 
 class _ShopPageState extends State<ShopPage> {
-  final store = ShopPageStore();
-  late PanelController _panelController;
+  late ShopPageStore store;
 
   @override
   void initState() {
     super.initState();
+    store = getIt<ShopPageStore>();
     store.getAll();
-    _panelController = PanelController();
   }
 
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter(
         routes: [
-          ShopTabRouter(store: store),
-          ShopTabRouter(store: store),
+          ShopTabRouter(),
+          ShopTabRouter(),
         ],
         builder: (context, child, animation) {
           final tabsRouter = AutoTabsRouter.of(context);
@@ -51,18 +49,11 @@ class _ShopPageState extends State<ShopPage> {
                 children: [
                   /// Shop tabs and tab bar
                   child,
-
                   /// Filters that on the top of the screen
                   FilterBar(store: store),
-                  SlidingUpPanel(
-                    panel: const Center(
-                      child: Text("This is the sliding Widget"),
-                    ),
-                    minHeight: 0,
-                    //renderPanelSheet: false,
-                    controller: _panelController,
-                    backdropEnabled: true,
-                    borderRadius: BorderRadius.circular(20.0),
+                  /// Sliding panel with more filters
+                  MobxSlidingPanel(
+                    panel: const SlidingPanelBody(),
                   ),
                 ],
               ),
