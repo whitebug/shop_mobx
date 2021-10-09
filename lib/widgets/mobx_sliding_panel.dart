@@ -15,7 +15,7 @@ class MobxSlidingPanel extends StatelessWidget {
     return SlidingUpPanel(
       panel: panel,
       minHeight: 0,
-      //renderPanelSheet: false,
+      maxHeight: 300,
       controller: getIt<ShopPageStore>().panelController,
       backdropEnabled: true,
       borderRadius: BorderRadius.only(

@@ -27,6 +27,7 @@ abstract class _ThemeStore with Store {
         fontWeight: FontWeight.bold,
         color: Colors.red,
       ),
+      subtitle2: TextStyle(fontSize: 14.0),
     ),
   );
 

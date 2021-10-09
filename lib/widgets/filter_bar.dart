@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:shop_mobx/pages/shop/shop.dart';
 
 import 'widgets.dart';
@@ -35,11 +36,45 @@ class FilterBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CategoriesList(),
-            TextButton(
-              child: Text('open'),
-              onPressed: () {
-                store.openPanel();
-              },
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    SizedBox(width: 16.0),
+                    Image.asset('assets/images/icons/filter.png'),
+                    SizedBox(width: 5.0),
+                    Text(
+                      'Filters',
+                      style: Theme.of(context).textTheme.subtitle2,
+                    )
+                  ],
+                ),
+                Row(
+                  children: [
+                    Image.asset('assets/images/icons/swap.png'),
+                    SizedBox(width: 5.0),
+                    Observer(
+                      builder: (_) {
+                        return TextButton(
+                          child: Text(
+                            store.filterString,
+                            style: Theme.of(context).textTheme.subtitle2,
+                          ),
+                          onPressed: () {
+                            store.openPanel();
+                          },
+                        );
+                      },
+                    ),
+                  ],
+                ),
+                TextButton(
+                  child: Image.asset('assets/images/icons/view.png'),
+                  onPressed: () {
+                  },
+                ),
+              ],
             ),
           ],
         ),

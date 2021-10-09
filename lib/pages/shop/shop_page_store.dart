@@ -34,6 +34,14 @@ abstract class _ShopPageStore with Store {
   @observable
   PanelController panelController = PanelController();
 
+  /// Filter status
+  @observable
+  OrderEnum filterStatus = OrderEnum.asc;
+
+  /// Filter status explanation. Default is 'Price: randomly'
+  @observable
+  String filterString = 'Price: randomly';
+
   /// Gets all the shop items from the backend
   @action
   Future<void> getAllProducts() async {
@@ -71,9 +79,10 @@ abstract class _ShopPageStore with Store {
     /// filter could be asc or desc
     required OrderEnum filter,
   }) {
-    displayedItems.sort((a, b) => a.price.compareTo(b.price));
     if (filter == OrderEnum.desc) {
-      displayedItems.reversed;
+      displayedItems.sort((a, b) => a.price.compareTo(b.price));
+    } else {
+      displayedItems.sort((a, b) => b.price.compareTo(a.price));
     }
   }
 
@@ -99,6 +108,12 @@ abstract class _ShopPageStore with Store {
     panelController.open();
   }
 
+  /// hide sliding panel
+  @action
+  void closePanel() {
+    panelController.close();
+  }
+
   /// dispose scroll controller of main page grid
   @action
   void disposeScrollController() {
@@ -109,6 +124,22 @@ abstract class _ShopPageStore with Store {
   @action
   void disposePanelController() {
     panelController.close();
+  }
+
+  /// sliding button pressed
+  @action
+  void onSlidingButtonPressed({required int index}) {
+    switch(index) {
+      case 0:
+        filterStatus = OrderEnum.desc;
+        filterString = 'Price: lowest to high';
+        break;
+      case 1:
+        filterStatus = OrderEnum.asc;
+        filterString = 'Price: highest to low';
+        break;
+    }
+    filterByPrice(filter: filterStatus);
   }
 
   /// Gets all the shop items and categories from the backend

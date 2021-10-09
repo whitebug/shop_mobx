@@ -69,6 +69,36 @@ mixin _$ShopPageStore on _ShopPageStore, Store {
     });
   }
 
+  final _$filterStatusAtom = Atom(name: '_ShopPageStore.filterStatus');
+
+  @override
+  OrderEnum get filterStatus {
+    _$filterStatusAtom.reportRead();
+    return super.filterStatus;
+  }
+
+  @override
+  set filterStatus(OrderEnum value) {
+    _$filterStatusAtom.reportWrite(value, super.filterStatus, () {
+      super.filterStatus = value;
+    });
+  }
+
+  final _$filterStringAtom = Atom(name: '_ShopPageStore.filterString');
+
+  @override
+  String get filterString {
+    _$filterStringAtom.reportRead();
+    return super.filterString;
+  }
+
+  @override
+  set filterString(String value) {
+    _$filterStringAtom.reportWrite(value, super.filterString, () {
+      super.filterString = value;
+    });
+  }
+
   final _$getAllProductsAsyncAction =
       AsyncAction('_ShopPageStore.getAllProducts');
 
@@ -144,6 +174,17 @@ mixin _$ShopPageStore on _ShopPageStore, Store {
   }
 
   @override
+  void closePanel() {
+    final _$actionInfo = _$_ShopPageStoreActionController.startAction(
+        name: '_ShopPageStore.closePanel');
+    try {
+      return super.closePanel();
+    } finally {
+      _$_ShopPageStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void disposeScrollController() {
     final _$actionInfo = _$_ShopPageStoreActionController.startAction(
         name: '_ShopPageStore.disposeScrollController');
@@ -166,12 +207,25 @@ mixin _$ShopPageStore on _ShopPageStore, Store {
   }
 
   @override
+  void onSlidingButtonPressed({required int index}) {
+    final _$actionInfo = _$_ShopPageStoreActionController.startAction(
+        name: '_ShopPageStore.onSlidingButtonPressed');
+    try {
+      return super.onSlidingButtonPressed(index: index);
+    } finally {
+      _$_ShopPageStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 displayedItems: ${displayedItems},
 categories: ${categories},
 scrollController: ${scrollController},
-panelController: ${panelController}
+panelController: ${panelController},
+filterStatus: ${filterStatus},
+filterString: ${filterString}
     ''';
   }
 }
