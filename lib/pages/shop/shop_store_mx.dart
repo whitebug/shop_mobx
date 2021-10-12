@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shop_mobx/models/models.dart';
+import 'package:shop_mobx/pages/pages.dart';
 import 'package:shop_mobx/repositories/repositories.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-import '../../services/locator.dart';
-
-part 'shop_page_store.g.dart';
+part 'shop_store_mx.g.dart';
 
 const allProducts = 'all products';
 
-class ShopPageStore = _ShopPageStore with _$ShopPageStore;
+class ShopStoreMx extends _ShopStoreMx with _$ShopStoreMx {
+  ShopStoreMx({required ProductsRepository productsRepository})
+      : super(productsRepository: productsRepository);
+}
 
-abstract class _ShopPageStore with Store {
-  final ProductsRepository _productsRepository = getIt<ProductsRepository>();
+abstract class _ShopStoreMx extends ShopStore with Store {
+  final ProductsRepository _productsRepository;
+
+  _ShopStoreMx({required ProductsRepository productsRepository})
+      : _productsRepository = productsRepository;
 
   /// All the items of the shop
   List<ShopItem> allItems = [];
@@ -129,7 +134,7 @@ abstract class _ShopPageStore with Store {
   /// sliding button pressed
   @action
   void onSlidingButtonPressed({required int index}) {
-    switch(index) {
+    switch (index) {
       case 0:
         filterStatus = OrderEnum.desc;
         filterString = 'Price: lowest to high';

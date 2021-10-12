@@ -12,13 +12,13 @@ class SlidingPanelBody extends StatefulWidget {
 }
 
 class _SlidingPanelBodyState extends State<SlidingPanelBody> {
-  late ShopPageStore _store;
+  late ShopStore _store;
   late List<bool> _slidingButtonsList;
 
   @override
   void initState() {
     super.initState();
-    _store = getIt<ShopPageStore>();
+    _store = getIt<ShopStore>();
     _slidingButtonsList = List.generate(2, (index) => false);
   }
 

@@ -1,9 +1,6 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:mobx/mobx.dart';
 
 import 'models.dart';
-
-part 'shop_item.freezed.dart';
-part 'shop_item.g.dart';
 
 /// {
 ///   "id": 1,
@@ -18,28 +15,22 @@ part 'shop_item.g.dart';
 ///   }
 /// }
 
-@freezed
-class ShopItem with _$ShopItem {
-  const factory ShopItem({
-    required int id,
-    required String title,
-    required double price,
-    required String category,
-    required String description,
-    required String image,
-    required ShopItemRating rating,
-  }) = _ShopItem;
+class ShopItem with Store {
+  final int id;
+  final String title;
+  final double price;
+  final String category;
+  final String description;
+  final String image;
+  final ShopItemRating rating;
 
-  factory ShopItem.fromJson(
-    Map<String, dynamic> json,
-  ) =>
-      _$ShopItemFromJson(
-        json,
-      );
-
-  static List<ShopItem> fromJsonToList(dynamic data) {
-    return (data as List)
-        .map((e) => ShopItem.fromJson(e as Map<String, dynamic>))
-        .toList();
-  }
+  ShopItem({
+    required this.id,
+    required this.title,
+    required this.price,
+    required this.category,
+    required this.description,
+    required this.image,
+    required this.rating,
+  });
 }

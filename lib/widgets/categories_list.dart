@@ -10,7 +10,7 @@ class CategoriesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ShopPageStore store = getIt<ShopPageStore>();
+    final ShopStore store = getIt<ShopStore>();
     return Observer(builder: (context) {
       List<String>? categories = store.categories;
       return Column(

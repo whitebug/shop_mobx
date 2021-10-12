@@ -14,7 +14,7 @@ class MobxScrollView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Observer(builder: (_) {
       return CustomScrollView(
-        controller: getIt<ShopPageStore>().scrollController,
+        controller: getIt<ShopStore>().scrollController,
         slivers: children,
       );
     });

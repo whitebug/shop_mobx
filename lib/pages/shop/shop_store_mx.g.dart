@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'shop_page_store.dart';
+part of 'shop_store_mx.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,8 +8,8 @@ part of 'shop_page_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$ShopPageStore on _ShopPageStore, Store {
-  final _$displayedItemsAtom = Atom(name: '_ShopPageStore.displayedItems');
+mixin _$ShopStoreMx on _ShopStoreMx, Store {
+  final _$displayedItemsAtom = Atom(name: '_ShopStoreMx.displayedItems');
 
   @override
   ObservableList<ShopItem> get displayedItems {
@@ -24,7 +24,7 @@ mixin _$ShopPageStore on _ShopPageStore, Store {
     });
   }
 
-  final _$categoriesAtom = Atom(name: '_ShopPageStore.categories');
+  final _$categoriesAtom = Atom(name: '_ShopStoreMx.categories');
 
   @override
   ObservableList<String> get categories {
@@ -39,7 +39,7 @@ mixin _$ShopPageStore on _ShopPageStore, Store {
     });
   }
 
-  final _$scrollControllerAtom = Atom(name: '_ShopPageStore.scrollController');
+  final _$scrollControllerAtom = Atom(name: '_ShopStoreMx.scrollController');
 
   @override
   ScrollController get scrollController {
@@ -54,7 +54,7 @@ mixin _$ShopPageStore on _ShopPageStore, Store {
     });
   }
 
-  final _$panelControllerAtom = Atom(name: '_ShopPageStore.panelController');
+  final _$panelControllerAtom = Atom(name: '_ShopStoreMx.panelController');
 
   @override
   PanelController get panelController {
@@ -69,7 +69,7 @@ mixin _$ShopPageStore on _ShopPageStore, Store {
     });
   }
 
-  final _$filterStatusAtom = Atom(name: '_ShopPageStore.filterStatus');
+  final _$filterStatusAtom = Atom(name: '_ShopStoreMx.filterStatus');
 
   @override
   OrderEnum get filterStatus {
@@ -84,7 +84,7 @@ mixin _$ShopPageStore on _ShopPageStore, Store {
     });
   }
 
-  final _$filterStringAtom = Atom(name: '_ShopPageStore.filterString');
+  final _$filterStringAtom = Atom(name: '_ShopStoreMx.filterString');
 
   @override
   String get filterString {
@@ -100,7 +100,7 @@ mixin _$ShopPageStore on _ShopPageStore, Store {
   }
 
   final _$getAllProductsAsyncAction =
-      AsyncAction('_ShopPageStore.getAllProducts');
+      AsyncAction('_ShopStoreMx.getAllProducts');
 
   @override
   Future<void> getAllProducts() {
@@ -108,112 +108,111 @@ mixin _$ShopPageStore on _ShopPageStore, Store {
   }
 
   final _$getAllCategoriesAsyncAction =
-      AsyncAction('_ShopPageStore.getAllCategories');
+      AsyncAction('_ShopStoreMx.getAllCategories');
 
   @override
   Future<dynamic> getAllCategories() {
     return _$getAllCategoriesAsyncAction.run(() => super.getAllCategories());
   }
 
-  final _$_ShopPageStoreActionController =
-      ActionController(name: '_ShopPageStore');
+  final _$_ShopStoreMxActionController = ActionController(name: '_ShopStoreMx');
 
   @override
   void getItemsByCategory({required String category}) {
-    final _$actionInfo = _$_ShopPageStoreActionController.startAction(
-        name: '_ShopPageStore.getItemsByCategory');
+    final _$actionInfo = _$_ShopStoreMxActionController.startAction(
+        name: '_ShopStoreMx.getItemsByCategory');
     try {
       return super.getItemsByCategory(category: category);
     } finally {
-      _$_ShopPageStoreActionController.endAction(_$actionInfo);
+      _$_ShopStoreMxActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void filterByPrice({required OrderEnum filter}) {
-    final _$actionInfo = _$_ShopPageStoreActionController.startAction(
-        name: '_ShopPageStore.filterByPrice');
+    final _$actionInfo = _$_ShopStoreMxActionController.startAction(
+        name: '_ShopStoreMx.filterByPrice');
     try {
       return super.filterByPrice(filter: filter);
     } finally {
-      _$_ShopPageStoreActionController.endAction(_$actionInfo);
+      _$_ShopStoreMxActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void jumpTo({double jump = 0}) {
-    final _$actionInfo = _$_ShopPageStoreActionController.startAction(
-        name: '_ShopPageStore.jumpTo');
+    final _$actionInfo =
+        _$_ShopStoreMxActionController.startAction(name: '_ShopStoreMx.jumpTo');
     try {
       return super.jumpTo(jump: jump);
     } finally {
-      _$_ShopPageStoreActionController.endAction(_$actionInfo);
+      _$_ShopStoreMxActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void animateTo({double jump = 0}) {
-    final _$actionInfo = _$_ShopPageStoreActionController.startAction(
-        name: '_ShopPageStore.animateTo');
+    final _$actionInfo = _$_ShopStoreMxActionController.startAction(
+        name: '_ShopStoreMx.animateTo');
     try {
       return super.animateTo(jump: jump);
     } finally {
-      _$_ShopPageStoreActionController.endAction(_$actionInfo);
+      _$_ShopStoreMxActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void openPanel() {
-    final _$actionInfo = _$_ShopPageStoreActionController.startAction(
-        name: '_ShopPageStore.openPanel');
+    final _$actionInfo = _$_ShopStoreMxActionController.startAction(
+        name: '_ShopStoreMx.openPanel');
     try {
       return super.openPanel();
     } finally {
-      _$_ShopPageStoreActionController.endAction(_$actionInfo);
+      _$_ShopStoreMxActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void closePanel() {
-    final _$actionInfo = _$_ShopPageStoreActionController.startAction(
-        name: '_ShopPageStore.closePanel');
+    final _$actionInfo = _$_ShopStoreMxActionController.startAction(
+        name: '_ShopStoreMx.closePanel');
     try {
       return super.closePanel();
     } finally {
-      _$_ShopPageStoreActionController.endAction(_$actionInfo);
+      _$_ShopStoreMxActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void disposeScrollController() {
-    final _$actionInfo = _$_ShopPageStoreActionController.startAction(
-        name: '_ShopPageStore.disposeScrollController');
+    final _$actionInfo = _$_ShopStoreMxActionController.startAction(
+        name: '_ShopStoreMx.disposeScrollController');
     try {
       return super.disposeScrollController();
     } finally {
-      _$_ShopPageStoreActionController.endAction(_$actionInfo);
+      _$_ShopStoreMxActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void disposePanelController() {
-    final _$actionInfo = _$_ShopPageStoreActionController.startAction(
-        name: '_ShopPageStore.disposePanelController');
+    final _$actionInfo = _$_ShopStoreMxActionController.startAction(
+        name: '_ShopStoreMx.disposePanelController');
     try {
       return super.disposePanelController();
     } finally {
-      _$_ShopPageStoreActionController.endAction(_$actionInfo);
+      _$_ShopStoreMxActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void onSlidingButtonPressed({required int index}) {
-    final _$actionInfo = _$_ShopPageStoreActionController.startAction(
-        name: '_ShopPageStore.onSlidingButtonPressed');
+    final _$actionInfo = _$_ShopStoreMxActionController.startAction(
+        name: '_ShopStoreMx.onSlidingButtonPressed');
     try {
       return super.onSlidingButtonPressed(index: index);
     } finally {
-      _$_ShopPageStoreActionController.endAction(_$actionInfo);
+      _$_ShopStoreMxActionController.endAction(_$actionInfo);
     }
   }
 

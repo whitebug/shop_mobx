@@ -14,12 +14,12 @@ class ShopPage extends StatefulWidget {
 }
 
 class _ShopPageState extends State<ShopPage> {
-  late ShopPageStore store;
+  late ShopStore store;
 
   @override
   void initState() {
     super.initState();
-    store = getIt<ShopPageStore>();
+    store = getIt<ShopStore>();
     store.getAll();
   }
 

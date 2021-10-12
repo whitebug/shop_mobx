@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:shop_mobx/models/models.dart';
 import 'package:shop_mobx/pages/pages.dart';
+import 'package:shop_mobx/pages/shop/shop_store_mx.dart';
 import 'package:shop_mobx/repositories/products_repository.dart';
 
 class ProductsRepositoryImpl extends ProductsRepository {
@@ -19,7 +20,7 @@ class ProductsRepositoryImpl extends ProductsRepository {
     var response = await dio.get(
       '$url/products${order == null ? '?sort=${order.toString()}' : ''}',
     );
-    var result = ShopItem.fromJsonToList(response.data);
+    var result = ShopItemMx.fromJsonToList(response.data);
     return result;
   }
 
@@ -28,7 +29,7 @@ class ProductsRepositoryImpl extends ProductsRepository {
     var response = await dio.get(
       '$url/products?limit=$quantity',
     );
-    return ShopItem.fromJsonToList(response.data);
+    return ShopItemMx.fromJsonToList(response.data);
   }
 
   @override
@@ -36,7 +37,7 @@ class ProductsRepositoryImpl extends ProductsRepository {
     var response = await dio.get(
       '$url/products/$id',
     );
-    return ShopItem.fromJson(response.data);
+    return ShopItemMx.fromJson(response.data);
   }
 
   @override
@@ -59,7 +60,7 @@ class ProductsRepositoryImpl extends ProductsRepository {
       var response = await dio.get(
         '$url/products/category/$category',
       );
-      return ShopItem.fromJsonToList(response.data);
+      return ShopItemMx.fromJsonToList(response.data);
     }
   }
 }

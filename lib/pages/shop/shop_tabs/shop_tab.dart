@@ -17,7 +17,7 @@ class ShopTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ShopPageStore store = getIt<ShopPageStore>();
+    final ShopStore store = getIt<ShopStore>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Observer(

@@ -13,7 +13,7 @@ class FilterBar extends StatelessWidget {
     required this.store,
   }) : super(key: key);
 
-  final ShopPageStore store;
+  final ShopStore store;
 
   @override
   Widget build(BuildContext context) {
