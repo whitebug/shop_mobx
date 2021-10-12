@@ -41,6 +41,14 @@ class ShopItemMx extends _ShopItemMx with _$ShopItemMx {
 }
 
 abstract class _ShopItemMx extends ShopItem with Store {
+  @observable
+  bool favorite = false;
+
+  @action
+  void changeFav() {
+    favorite = !favorite;
+  }
+
   _ShopItemMx({
     required int id,
     required String title,
