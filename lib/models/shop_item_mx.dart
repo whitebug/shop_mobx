@@ -9,6 +9,8 @@ part 'shop_item_mx.g.dart';
 @JsonSerializable()
 class ShopItemMx extends _ShopItemMx with _$ShopItemMx {
   final ShopItemRatingMx rating;
+  @JsonKey(ignore: true)
+  bool get favorite => super.favorite;
 
   ShopItemMx({
     required int id,

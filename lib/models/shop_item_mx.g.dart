@@ -15,7 +15,7 @@ ShopItemMx _$ShopItemMxFromJson(Map<String, dynamic> json) {
     description: json['description'] as String,
     image: json['image'] as String,
     rating: ShopItemRatingMx.fromJson(json['rating'] as Map<String, dynamic>),
-  )..favorite = json['favorite'] as bool;
+  );
 }
 
 Map<String, dynamic> _$ShopItemMxToJson(ShopItemMx instance) =>
@@ -26,7 +26,6 @@ Map<String, dynamic> _$ShopItemMxToJson(ShopItemMx instance) =>
       'category': instance.category,
       'description': instance.description,
       'image': instance.image,
-      'favorite': instance.favorite,
       'rating': instance.rating,
     };
 

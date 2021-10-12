@@ -1,5 +1,3 @@
-import 'package:mobx/mobx.dart';
-
 import 'models.dart';
 
 /// {
@@ -15,7 +13,7 @@ import 'models.dart';
 ///   }
 /// }
 
-class ShopItem with Store {
+class ShopItem{
   final int id;
   final String title;
   final double price;
