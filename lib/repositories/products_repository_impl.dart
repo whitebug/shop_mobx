@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:shop_mobx/models/models.dart';
-import 'package:shop_mobx/pages/pages.dart';
 import 'package:shop_mobx/pages/shop/shop_store_mx.dart';
 import 'package:shop_mobx/repositories/products_repository.dart';
 

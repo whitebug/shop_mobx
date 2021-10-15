@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:shop_mobx/models/models.dart';
 
 class GridCard extends StatelessWidget {
@@ -9,6 +10,7 @@ class GridCard extends StatelessWidget {
   final Widget itemName;
   final Widget itemPrice;
   final Color cardColor;
+
   const GridCard({
     Key? key,
     required this.shopItem,
@@ -23,10 +25,8 @@ class GridCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (
-        BuildContext context,
-        BoxConstraints constraints,
-      ) {
+      builder: (BuildContext context,
+          BoxConstraints constraints,) {
         return Stack(
           children: [
             Padding(
@@ -82,12 +82,18 @@ class GridCard extends StatelessWidget {
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(
-                    Icons.favorite_border,
-                    color: Colors.grey,
+                  child: Observer(
+                    builder: (_) {
+                      return Icon(
+                        Icons.favorite_border,
+                        color: shopItem.favorite ? Colors.red : Colors.grey,
+                      );
+                    },
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  shopItem.changeFav();
+                },
               ),
             ),
           ],

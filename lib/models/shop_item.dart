@@ -1,3 +1,5 @@
+import 'package:mobx/mobx.dart';
+
 import 'models.dart';
 
 /// {
@@ -13,14 +15,16 @@ import 'models.dart';
 ///   }
 /// }
 
-class ShopItem{
+abstract class ShopItem with Store {
   final int id;
   final String title;
   final double price;
   final String category;
   final String description;
   final String image;
-  final ShopItemRating rating;
+  final ShopItemRatingMx rating;
+  bool get favorite;
+  void changeFav();
 
   ShopItem({
     required this.id,

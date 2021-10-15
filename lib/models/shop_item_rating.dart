@@ -5,7 +5,7 @@ import 'package:mobx/mobx.dart';
 ///   "count": '120'
 /// }
 
-class ShopItemRating with Store {
+abstract class ShopItemRating with Store {
   final double rate;
   final dynamic count;
 
