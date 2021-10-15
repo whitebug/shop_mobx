@@ -217,6 +217,17 @@ mixin _$ShopStoreMx on _ShopStoreMx, Store {
   }
 
   @override
+  void getFavorites() {
+    final _$actionInfo = _$_ShopStoreMxActionController.startAction(
+        name: '_ShopStoreMx.getFavorites');
+    try {
+      return super.getFavorites();
+    } finally {
+      _$_ShopStoreMxActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 displayedItems: ${displayedItems},

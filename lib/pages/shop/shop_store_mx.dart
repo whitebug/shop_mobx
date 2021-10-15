@@ -22,6 +22,8 @@ abstract class _ShopStoreMx extends ShopStore with Store {
 
   /// All the items of the shop
   List<ShopItem> allItems = [];
+  /// Current selected set of items
+  List<ShopItem> selectedItems = [];
 
   /// Items to be currently displayed
   @observable
@@ -74,6 +76,8 @@ abstract class _ShopStoreMx extends ShopStore with Store {
         allItems.where((item) => item.category == category),
       );
     }
+    // save current selection
+    selectedItems = displayedItems;
     // scrolls back to the beginning when a category is chosen
     animateTo(jump: 0);
   }
@@ -131,20 +135,42 @@ abstract class _ShopStoreMx extends ShopStore with Store {
     panelController.close();
   }
 
-  /// sliding button pressed
+  /// sliding button pressed. Reactions on selected filter are explained
+  /// in specific cases.
   @action
   void onSlidingButtonPressed({required int index}) {
     switch (index) {
       case 0:
+        _checkIfNotEmpty();
         filterStatus = OrderEnum.desc;
         filterString = 'Price: lowest to high';
         break;
       case 1:
+        _checkIfNotEmpty();
         filterStatus = OrderEnum.asc;
         filterString = 'Price: highest to low';
         break;
+      case 2:
+        selectedItems = displayedItems;
+        getFavorites();
+        filterString = 'Favorites';
     }
     filterByPrice(filter: filterStatus);
+  }
+
+  /// checks if selected list is empty
+  void _checkIfNotEmpty() {
+    if (selectedItems.isNotEmpty) {
+      displayedItems = ObservableList.of(selectedItems);
+    }
+  }
+
+  /// Return only favorite items
+  @action
+  void getFavorites() {
+    displayedItems = ObservableList.of(
+      allItems.where((item) => item.favorite == true),
+    );
   }
 
   /// Gets all the shop items and categories from the backend

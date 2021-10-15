@@ -15,11 +15,14 @@ class _SlidingPanelBodyState extends State<SlidingPanelBody> {
   late ShopStore _store;
   late List<bool> _slidingButtonsList;
 
+  /// number of buttons
+  final _buttonNumber = 3;
+
   @override
   void initState() {
     super.initState();
     _store = getIt<ShopStore>();
-    _slidingButtonsList = List.generate(2, (index) => false);
+    _slidingButtonsList = List.generate(_buttonNumber, (index) => false);
   }
 
   Widget _slidingButton({
@@ -51,13 +54,17 @@ class _SlidingPanelBodyState extends State<SlidingPanelBody> {
           children: [
             _slidingButton(text: 'Price: lowest to high'),
             _slidingButton(text: 'Price: highest to low'),
+            _slidingButton(text: 'Favorites'),
           ],
           isSelected: _slidingButtonsList,
           selectedColor: Colors.red,
           onPressed: (index) {
             setState(() {
               // remove selection
-              _slidingButtonsList = [false, false];
+              _slidingButtonsList = List.generate(
+                _buttonNumber,
+                (index) => false,
+              );
               // select button
               _slidingButtonsList[index] = !_slidingButtonsList[index];
               // send info to the store

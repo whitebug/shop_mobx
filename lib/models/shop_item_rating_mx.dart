@@ -9,9 +9,9 @@ abstract class _ShopItemRatingMx extends ShopItemRating with Store {
     required double rate,
     required dynamic count,
   }) : super(
-    rate: rate,
-    count: count,
-  );
+          rate: rate,
+          count: count,
+        );
 }
 
 @JsonSerializable()
@@ -20,9 +20,9 @@ class ShopItemRatingMx extends _ShopItemRatingMx with _$ShopItemRatingMx {
     required double rate,
     required dynamic count,
   }) : super(
-    rate: rate,
-    count: count,
-  );
+          rate: rate,
+          count: count,
+        );
 
   /// Connect the generated [_$ShopItemRatingMxFromJson] function to the `fromJson`
   /// factory.
@@ -37,5 +37,13 @@ class ShopItemRatingMx extends _ShopItemRatingMx with _$ShopItemRatingMx {
     return (data as List)
         .map((e) => ShopItemRatingMx.fromJson(e as Map<String, dynamic>))
         .toList();
+  }
+
+  /// Define that two [ShopItemRatingMx] are equal
+  @override
+  bool operator ==(other) {
+    return (other is ShopItemRatingMx) &&
+        other.rate == rate &&
+        other.count == count;
   }
 }

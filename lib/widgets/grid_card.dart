@@ -25,8 +25,10 @@ class GridCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (BuildContext context,
-          BoxConstraints constraints,) {
+      builder: (
+        BuildContext context,
+        BoxConstraints constraints,
+      ) {
         return Stack(
           children: [
             Padding(
@@ -85,7 +87,9 @@ class GridCard extends StatelessWidget {
                   child: Observer(
                     builder: (_) {
                       return Icon(
-                        Icons.favorite_border,
+                        shopItem.favorite
+                            ? Icons.favorite
+                            : Icons.favorite_border,
                         color: shopItem.favorite ? Colors.red : Colors.grey,
                       );
                     },

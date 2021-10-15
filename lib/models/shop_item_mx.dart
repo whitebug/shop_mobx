@@ -68,4 +68,17 @@ class ShopItemMx extends _ShopItemMx with _$ShopItemMx {
         .map((e) => ShopItemMx.fromJson(e as Map<String, dynamic>))
         .toList();
   }
+
+  /// Define that two [ShopItemMx] are equal
+  @override
+  bool operator ==(other) {
+    return (other is ShopItemMx) &&
+        other.id == id &&
+        other.title == title &&
+        other.price == price &&
+        other.category == category &&
+        other.description == description &&
+        other.image == image &&
+        other.rating == rating;
+  }
 }
