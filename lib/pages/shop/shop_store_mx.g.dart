@@ -99,6 +99,21 @@ mixin _$ShopStoreMx on _ShopStoreMx, Store {
     });
   }
 
+  final _$shopListTypeAtom = Atom(name: '_ShopStoreMx.shopListType');
+
+  @override
+  ShopListEnum get shopListType {
+    _$shopListTypeAtom.reportRead();
+    return super.shopListType;
+  }
+
+  @override
+  set shopListType(ShopListEnum value) {
+    _$shopListTypeAtom.reportWrite(value, super.shopListType, () {
+      super.shopListType = value;
+    });
+  }
+
   final _$getAllProductsAsyncAction =
       AsyncAction('_ShopStoreMx.getAllProducts');
 
@@ -228,6 +243,17 @@ mixin _$ShopStoreMx on _ShopStoreMx, Store {
   }
 
   @override
+  void changeShopType() {
+    final _$actionInfo = _$_ShopStoreMxActionController.startAction(
+        name: '_ShopStoreMx.changeShopType');
+    try {
+      return super.changeShopType();
+    } finally {
+      _$_ShopStoreMxActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 displayedItems: ${displayedItems},
@@ -235,7 +261,8 @@ categories: ${categories},
 scrollController: ${scrollController},
 panelController: ${panelController},
 filterStatus: ${filterStatus},
-filterString: ${filterString}
+filterString: ${filterString},
+shopListType: ${shopListType}
     ''';
   }
 }

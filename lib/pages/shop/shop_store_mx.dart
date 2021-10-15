@@ -49,6 +49,10 @@ abstract class _ShopStoreMx extends ShopStore with Store {
   @observable
   String filterString = 'Price: randomly';
 
+  /// Shop type
+  @observable
+  ShopListEnum shopListType = ShopListEnum.grid;
+
   /// Gets all the shop items from the backend
   @action
   Future<void> getAllProducts() async {
@@ -171,6 +175,16 @@ abstract class _ShopStoreMx extends ShopStore with Store {
     displayedItems = ObservableList.of(
       allItems.where((item) => item.favorite == true),
     );
+  }
+
+  /// Changes shop type view
+  @action
+  void changeShopType() {
+    if (shopListType == ShopListEnum.grid) {
+      shopListType = ShopListEnum.list;
+    } else {
+      shopListType = ShopListEnum.grid;
+    }
   }
 
   /// Gets all the shop items and categories from the backend

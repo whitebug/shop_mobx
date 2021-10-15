@@ -1,5 +1,6 @@
 export 'shop_header.dart';
 export 'grid_card.dart';
+export 'list_card.dart';
 export 'categories_list.dart';
 export 'filter_bar.dart';
 export 'mobx_scroll_view.dart';

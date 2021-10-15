@@ -18,6 +18,8 @@ abstract class ShopStore with Store {
   OrderEnum get filterStatus;
   /// Filter status explanation. Default is 'Price: randomly'
   String get filterString;
+  /// View of shop items
+  ShopListEnum get shopListType;
   /// Gets all the shop items from the backend
   Future<void> getAllProducts();
   /// Gets all the categories from the backend
@@ -46,6 +48,8 @@ abstract class ShopStore with Store {
   void disposePanelController();
   /// sliding button pressed
   void onSlidingButtonPressed({required int index});
+  /// Changes shop type
+  void changeShopType();
   /// Gets all the shop items and categories from the backend
   Future getAll();
 }
