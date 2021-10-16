@@ -39,6 +39,21 @@ mixin _$ShopStoreMx on _ShopStoreMx, Store {
     });
   }
 
+  final _$titleAtom = Atom(name: '_ShopStoreMx.title');
+
+  @override
+  String get title {
+    _$titleAtom.reportRead();
+    return super.title;
+  }
+
+  @override
+  set title(String value) {
+    _$titleAtom.reportWrite(value, super.title, () {
+      super.title = value;
+    });
+  }
+
   final _$scrollControllerAtom = Atom(name: '_ShopStoreMx.scrollController');
 
   @override
@@ -258,6 +273,7 @@ mixin _$ShopStoreMx on _ShopStoreMx, Store {
     return '''
 displayedItems: ${displayedItems},
 categories: ${categories},
+title: ${title},
 scrollController: ${scrollController},
 panelController: ${panelController},
 filterStatus: ${filterStatus},

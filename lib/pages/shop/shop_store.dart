@@ -10,6 +10,8 @@ abstract class ShopStore with Store {
   List<ShopItem> get displayedItems;
   /// Categories of the shop items
   List<String> get categories;
+  /// Current category name for title
+  String get title;
   /// Controller for the main grid list
   ScrollController get scrollController;
   /// Controller for the sliding up panel

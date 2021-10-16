@@ -71,8 +71,8 @@ class FilterBar extends StatelessWidget {
                     TextButton(
                       child: Image.asset(
                         store.shopListType == ShopListEnum.grid
-                            ? 'assets/images/icons/grid.png'
-                            : 'assets/images/icons/list.png',
+                            ? 'assets/images/icons/list.png'
+                            : 'assets/images/icons/grid.png',
                       ),
                       onPressed: () {
                         store.changeShopType();

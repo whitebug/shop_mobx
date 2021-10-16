@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:shop_mobx/pages/item/item_page.dart';
 
 import '../pages/pages.dart';
 
@@ -12,6 +13,7 @@ import '../pages/pages.dart';
       ),
     ]),
     AutoRoute(page: ShopItemPage),
+    AutoRoute(page: ItemPage),
   ],
 )
 class $AppRouter {}

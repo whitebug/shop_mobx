@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_mobx/services/services.dart';
 
 import 'services/locator.dart';
@@ -6,7 +8,9 @@ import 'services/locator.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await locatorSetup();
-  runApp(ShopApp());
+  GetIt.I.isReady<SharedPreferences>().then((_) {
+    runApp(ShopApp());
+  });
 }
 
 class ShopApp extends StatelessWidget {

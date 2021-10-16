@@ -33,6 +33,10 @@ abstract class _ShopStoreMx extends ShopStore with Store {
   @observable
   ObservableList<String> categories = ObservableList<String>();
 
+  /// Current category name for title
+  @observable
+  String title = allProducts.capitalizeFirst();
+
   /// Controller for the main grid list
   @observable
   ScrollController scrollController = ScrollController();
@@ -75,10 +79,14 @@ abstract class _ShopStoreMx extends ShopStore with Store {
   }) {
     if (category == allProducts) {
       displayedItems = ObservableList.of(allItems);
+      /// set the title
+      title = allProducts.capitalizeFirst();
     } else {
       displayedItems = ObservableList.of(
         allItems.where((item) => item.category == category),
       );
+      /// set the title
+      title = category.capitalizeFirst();
     }
     // save current selection
     selectedItems = displayedItems;
@@ -148,16 +156,19 @@ abstract class _ShopStoreMx extends ShopStore with Store {
         _checkIfNotEmpty();
         filterStatus = OrderEnum.desc;
         filterString = 'Price: lowest to high';
+        selectedItems = displayedItems;
         break;
       case 1:
         _checkIfNotEmpty();
         filterStatus = OrderEnum.asc;
         filterString = 'Price: highest to low';
+        selectedItems = displayedItems;
         break;
       case 2:
         selectedItems = displayedItems;
         getFavorites();
         filterString = 'Favorites';
+        break;
     }
     filterByPrice(filter: filterStatus);
   }
@@ -191,5 +202,12 @@ abstract class _ShopStoreMx extends ShopStore with Store {
   Future getAll() async {
     getAllProducts();
     getAllCategories();
+  }
+}
+
+/// Capitalize first letter
+extension StringExtension on String {
+  String capitalizeFirst() {
+    return "${this[0].toUpperCase()}${this.substring(1)}";
   }
 }
